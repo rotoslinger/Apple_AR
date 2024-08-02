@@ -27,10 +27,31 @@ npm create vite@latest
 
 
 # in terminal run:
-    npx vite
-# you will get an http:localhostxxxx, copy this to your debugging browser
-# then, in the same terminal you started vite in, run:    
-    --host 
+    npx vite --host
+
+# you should see two very important lines:
+  ➜  Local:   http://localhost:9000/
+  ➜  Network: http://00.00.00.00:9000/
+
+# copy the Local address to a browser, hit enter, and give camera permission
+# if you want to test on a mobile device, open a mobile browser and type out the Network, don't be lazy and send it to yourself in a message, that is lame and unsecure (like me).
+
 # this obviously starts you at index.html
 # if you have multiple examples, like three.js, and would like to jump to a specific example, append a relative path after your host domain:
-    localhost:5175/examples/webgl_animation_keyframes.html
+    http:localhost:5175/examples/webgl_animation_keyframes.html
+
+
+#### find your network the hard way
+# in terminal run:
+    ipconfig
+# find the IPv4 Address, this is your IP address
+# append the address like so:
+    http://<YOUR_COMPUTER'S_IP>:<YOUR_DEV_SERVER_PORT_NUMBER>
+
+
+
+# by the way:
+# if your network looks like this:
+  ➜  Network: http://8.8.8.8:9000/
+# then you are google, and you invented the internet (this is a joke, your mom obviously invented the internet) (seriously though, google did not invent the internet)
+
