@@ -1,9 +1,13 @@
-# install notes for setting up for the first time
+# Install notes for setting up on a new computer for the first time
+
+#### Install npm ####
+[Download and install Node.js](https://nodejs.org/en/download/package-manager)
+[Download and install npm](https://github.com/nodesource/distributions)
+
 
 
 #### Install Three ####
 npm install three --save-dev
-
 
 #### In terming install typescript: ####
 npm install --location=global typescript
