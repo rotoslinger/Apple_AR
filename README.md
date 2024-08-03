@@ -1,7 +1,5 @@
 # install notes for setting up for the first time
 
-
-
 #### If you need admin privledges, right click on terminal, click on "Run As Administrator" ####
 # Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
@@ -34,7 +32,7 @@ npm create vite@latest
   ➜  Network: http://00.00.00.00:9000/
 
 # copy the Local address to a browser, hit enter, and give camera permission
-# if you want to test on a mobile device, open a mobile browser and type out the Network, don't be lazy and send it to yourself in a message, that is lame and unsecure (like me).
+# if you want to test on a mobile device, 
 
 # this obviously starts you at index.html
 # if you have multiple examples, like three.js, and would like to jump to a specific example, append a relative path after your host domain:
@@ -48,10 +46,14 @@ npm create vite@latest
 # append the address like so:
     http://<YOUR_COMPUTER'S_IP>:<YOUR_DEV_SERVER_PORT_NUMBER>
 
+#### USDZ maya export windows nonsense ####
 
+# because I am creating my files on windows I have to jump through some nonsensical hoops just to get everything in a proper format for three.js
 
-# by the way:
-# if your network looks like this:
-  ➜  Network: http://8.8.8.8:9000/
-# then you are google, and you invented the internet (this is a joke, your mom obviously invented the internet) (seriously though, google did not invent the internet)
+# In the Maya docs Autodesk promises that giving the "File name:" a .usdz ending (so oni.usdz) in the "File name:" dialogue is all you need to do to export as usdz. (This won't work in three.js)
 
+# What actually happens is it zips a usdc (instead of usda), into a usdz even if you have the "Asci" option set.
+
+# Three cannot load these usdc (usd crate) zipped files
+
+# USD itself 
