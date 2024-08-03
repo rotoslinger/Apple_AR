@@ -1,8 +1,12 @@
+# Live Demo
+[Apple_AR](https://rotoslinger.github.io/Apple_AR/)
+
+
 # Install notes for setting up on a new computer for the first time
 
 #### Install npm ####
-[Download and install Node.js](https://nodejs.org/en/download/package-manager)
-[Download and install npm](https://github.com/nodesource/distributions)
+-[Download and install Node.js](https://nodejs.org/en/download/package-manager)
+-[Download and install npm](https://github.com/nodesource/distributions)
 
 
 
