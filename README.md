@@ -1,7 +1,5 @@
 # install notes for setting up for the first time
 
-#### If you need admin privledges, right click on terminal, click on "Run As Administrator" ####
-# Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
 #### Install Three ####
 npm install three --save-dev
@@ -57,3 +55,8 @@ npm create vite@latest
 # Three cannot load these usdc (usd crate) zipped files
 
 # USD itself 
+
+
+### Notes to self:
+#### If you need admin privledges, right click on terminal, click on "Run As Administrator":
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
