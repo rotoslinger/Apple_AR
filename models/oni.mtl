@@ -1,0 +1,31 @@
+newmtl OniORIGINAL1_group30_Hair_pTorus3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Colors.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks Spec.png
+Ns 54.93
+newmtl OniORIGINAL1_group30_Hair_pTorus3SG4
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 0.00
+newmtl blinn1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd oni_diffuse.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks oni_spec.png
+newmtl g1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 0.00

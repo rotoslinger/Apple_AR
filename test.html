@@ -1,34 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	  <title>three.js webgl - loaders - USDZLoader</title>
-		<meta charset="utf-8">
+		<title>Japanese Oni Model Viewer</title>
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="main.css">
-		<style>
-			body {
-				background-color: #eee;
-				color: #444;
-			}
-			a {
-				color: #08f;
-			}
-		</style>
 	</head>
-	<body>
-		<div id="info">
-			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - USDZLoader
-		</div>
-
-		<script type="importmap">
-			{
-				"imports": {
-					"three": "../build/three.module.js",
-					"three/addons/": "./jsm/"
-				}
-			}
-		</script>
-
+	<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 		<script type="module">
 
 			import * as THREE from 'three';
@@ -36,6 +12,10 @@
 			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 			import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 			import { USDZLoader } from 'three/addons/loaders/USDZLoader.js';
+			import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+			import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 
 			let camera, scene, renderer;
 
@@ -43,10 +23,82 @@
 
 			async function init() {
 
-				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
-				camera.position.set( 0, 0.75, - 1.5 );
+
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera.position.set( 0, 1.2, - 1.5 );
 
 				scene = new THREE.Scene();
+				// scene.background = new THREE.Color().setHSL( 0.6, 0, 1 );
+				// scene.fog = new THREE.Fog( scene.background, 1, 5000 );
+
+				// LIGHTS
+
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 2 );
+				hemiLight.color.setHSL( 0.6, 1, 0.6 );
+				hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+				hemiLight.position.set( 0, 50, 0 );
+				scene.add( hemiLight );
+
+
+				const dirLight = new THREE.DirectionalLight( 0xffffff, 3 );
+				dirLight.color.setHSL( 0.1, 1, 0.95 );
+				dirLight.position.set( - 1, 1.75, 1 );
+				dirLight.position.multiplyScalar( 30 );
+				scene.add( dirLight );
+
+				dirLight.castShadow = true;
+
+				dirLight.shadow.mapSize.width = 2048;
+				dirLight.shadow.mapSize.height = 2048;
+
+				const d = 50;
+
+				dirLight.shadow.camera.left = - d;
+				dirLight.shadow.camera.right = d;
+				dirLight.shadow.camera.top = d;
+				dirLight.shadow.camera.bottom = - d;
+
+				dirLight.shadow.camera.far = 3500;
+				dirLight.shadow.bias = - 0.0001;
+
+				
+				dirLight.shadow.intensity = 1;
+
+
+
+
+
+
+
+
+
+
+
+		// new MTLLoader()
+		// .setPath( 'models/' )
+		// .load( 'oni.mtl', function ( materials ) {
+		// 	materials.preload();
+		// 	new OBJLoader()
+		// 		.setMaterials( materials )
+		// 		.setPath( 'models/' )
+		// 		.load( 'oni.obj', function ( group ) {
+
+					
+		// 			mesh0 = group.children[0];
+		// 			// mesh0.material=material
+		// 			// mesh0.material.side = THREE.DoubleSide;
+		// 			// mesh0.material = material_ar
+		// 			// mesh0.material.metalness = 0;
+		// 			mesh0.position.y = 0.5;
+		// 		// model.position.z = - 0.25;
+		// 		// model.position.set( 0, 1, - 1.5 );
+		// 			mesh0.castShadow = true;
+		// 			mesh0.receiveShadow = true;
+
+		// 			scene.add(mesh0);
+		// 		}, onProgress, onError );
+		// });
+	
 
 				const rgbeLoader = new RGBELoader()
 					.setPath( 'textures/equirectangular/' );
@@ -61,33 +113,95 @@
 
 				// environment
 
+
+
 				texture.mapping = THREE.EquirectangularReflectionMapping;
 
 				scene.background = texture;
+
 				// scene.backgroundBlurriness = 0.3;
-				scene.environment = texture;
+				// scene.environment = texture;
 
 				// model
 
-				model.position.y = 0.25;
-				model.position.z = - 0.25;
-				scene.add( model );
+				model.position.y = 0.5;
+				// model.position.z = - 0.25;
+				// model.position.set( 0, 1, - 1.5 );
+				model.castShadow = true;
+				model.receiveShadow = true;
+				model.material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
 
+				// model.material = material;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
 				// renderer
-
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = THREE.ACESFilmicToneMapping;
-				renderer.toneMappingExposure = 2.0;
+				renderer.shadowMap.enabled = true;
+
+
+
+
+				// const oni_tex = new THREE.TextureLoader().load( 'models/images/apple.jpg' );
+				// oni_tex.colorSpace = THREE.RGBColorSpace;
+				// const material_ar = new THREE.MeshPhongMaterial({shininess: 5})
+				// material_ar.color.setRGB(0.5,0.5,0.5)
+				// material_ar.specular.setRGB(1.0,1.0,1.0)
+
+				// material_ar.map = oni_tex
+				// material_ar.side = THREE.DoubleSide;
+
+
+				// model.material = material_ar;
+
+
+
+				// function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
+				// function onError(xhr) { console.log( 'An error happened' ); }
+
+
+
+
+
+				scene.add( model );
+
+
+
+
+
+
+
+
+
+
 				document.body.appendChild( renderer.domElement );
+
+
+
+
+				camera.position.set( 0, 1.2, - 2 );
 
 				const controls = new OrbitControls( camera, renderer.domElement );
 				controls.minDistance = 1;
 				controls.maxDistance = 8;
-				// controls.target.y = 15;
-				// controls.update();
+				// controls.d = 2;
+				controls.target.y = .85;
+				controls.update();
 
 				window.addEventListener( 'resize', onWindowResize );
 
